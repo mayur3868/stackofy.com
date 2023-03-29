@@ -1,4 +1,4 @@
-name: Run remote shell script
+name: development environment
 
 on:
   push:
