@@ -1,0 +1,32 @@
+name: Run remote shell script
+
+on:
+  push:
+    branches:
+      - main, master
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install ssh client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+      - name: Run remote script
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODHOST }}
+          username: ${{ secrets.PRODUSERNAME }}
+          password: ${{ secrets.PRODPASSWORD }}
+          script: |
+            cd /var/www/; 
+            pwd;
+            cd prod;
+            pwd;
+            git pull origin master;
+            php bin/magento setup:upgrade;
+            php bin/magento setup:di:compile;
+            php bin/magento setup:static-content:deploy;
+            php bin/magento indexer:reindex;
+            php bin/magento cache:clean;
+            exit;
