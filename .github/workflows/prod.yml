@@ -15,9 +15,9 @@ jobs:
       - name: Run remote script
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PRODHOST }}
-          username: ${{ secrets.PRODUSER }}
-          password: ${{ secrets.PRODPASSWORD }}
+          host: ${{ secrets.DEVHOST }}
+          username: ${{ secrets.DEVUSERNAME }}
+          password: ${{ secrets.DEVPASSWORD }}
           key: ${{ secrets.KEY }}
           port: 22
           script: |
