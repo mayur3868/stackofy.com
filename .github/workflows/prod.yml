@@ -17,6 +17,7 @@ jobs:
         with:
           host: ${{ secrets.PRODHOST }}
           username: ${{ secrets.PRODUSER }}
+          password: ${{ secrets.PRODPASSWORD }}
           key: ${{ secrets.KEY }}
           port: 22
           script: |
