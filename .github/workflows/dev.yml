@@ -1,0 +1,31 @@
+name: development environment
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install ssh client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+      - name: Run remote script
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEVHOST }}
+          username: ${{ secrets.DEVUSERNAME }}
+          key: ${{ secrets.KEY }}
+          port: 22
+          script: |
+            cd /var/www/; 
+            pwd;
+            cd dev;
+            pwd;
+            git pull origin development;
+            php bin/magento setup:upgrade;
+            php bin/magento setup:static-content:deploy;
+            php bin/magento cache:clean;
+            exit;
