@@ -17,7 +17,8 @@ jobs:
         with:
           host: ${{ secrets.DEVHOST }}
           username: ${{ secrets.DEVUSERNAME }}
-          password: ${{ secrets.DEVPASSWORD }}
+          key: ${{ secrets.KEY }}
+          port: 22
           script: |
             cd /var/www/; 
             pwd;
