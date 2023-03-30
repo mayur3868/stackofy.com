@@ -1,9 +1,9 @@
-name: Production Branch
+name: development environment
 
 on:
   push:
     branches:
-      - master
+      - development
 
 jobs:
   run-script:
@@ -15,16 +15,16 @@ jobs:
       - name: Run remote script
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PRODHOST }}
-          username: ${{ secrets.PRODUSER }}
-          password: ${{ secrets.PRODPASS }}
+          host: ${{ secrets.DEVHOST }}
+          username: ${{ secrets.DEVUSERNAME }}
+          password: ${{ secrets.DEVPASSWORD }}
           script: |
             cd /var/www/; 
             pwd;
-            cd prod;
+            cd dev;
             pwd;
-            git pull origin master;
+            git pull origin development;
             php bin/magento setup:upgrade;
-            php bin/magento setup:static-content:deploy -f;
+            php bin/magento setup:static-content:deploy;
             php bin/magento cache:clean;
             exit;
