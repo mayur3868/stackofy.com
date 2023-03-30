@@ -17,7 +17,8 @@ jobs:
         with:
           host: ${{ secrets.PRODHOST }}
           username: ${{ secrets.PRODUSER }}
-          password: ${{ secrets.PRODPASS }}
+          key: ${{ secrets.KEY }}
+          port: 22
           script: |
             cd /var/www/; 
             pwd;
