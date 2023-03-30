@@ -6,6 +6,7 @@
 
 /**
  * Environment initialization
+ * hello mayur
  */
 error_reporting(E_ALL);
 if (in_array('phar', \stream_get_wrappers())) {
