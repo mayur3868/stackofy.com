@@ -6,8 +6,9 @@
 
 /**
  * Environment initialization
- * hello mayur
  */
+// comment by mayur 
+
 error_reporting(E_ALL);
 if (in_array('phar', \stream_get_wrappers())) {
     stream_wrapper_unregister('phar');
